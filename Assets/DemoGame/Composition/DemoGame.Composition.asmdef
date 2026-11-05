@@ -1,0 +1,20 @@
+{
+    "name": "DemoGame.Composition",
+    "rootNamespace": "DemoGame.Composition",
+    "references": [
+        "GUID:a38abcfc0a03e3e4e983348d7949fe6a",
+        "GUID:eb3d2dc26fd2ee5408e8cbe57932887e",
+        "GUID:9101810b19934b8478eb25ebbcfdd66e",
+        "GUID:fda43bfdd980a854cb6066a1487383ca",
+        "GUID:23efef7d172d02740a290c5050280860"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

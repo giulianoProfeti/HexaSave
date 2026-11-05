@@ -1,0 +1,17 @@
+{
+    "name": "HexaSave.Adapters.InMemory",
+    "rootNamespace": "HexaSave.Adapters.InMemory",
+    "references": [
+        "GUID:a38abcfc0a03e3e4e983348d7949fe6a",
+        "GUID:eb3d2dc26fd2ee5408e8cbe57932887e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

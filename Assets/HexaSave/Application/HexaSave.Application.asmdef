@@ -1,0 +1,16 @@
+{
+    "name": "HexaSave.Application",
+    "rootNamespace": "HexaSave.Application",
+    "references": [
+        "GUID:a38abcfc0a03e3e4e983348d7949fe6a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
