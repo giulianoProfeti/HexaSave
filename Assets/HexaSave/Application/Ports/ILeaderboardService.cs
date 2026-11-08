@@ -11,6 +11,8 @@ namespace HexaSave.Application.Ports
     /// <remarks>
     /// Contrato:
     /// <list type="bullet">
+    /// <item>Cada jogador aparece no máximo UMA vez por ranking, com sua MELHOR pontuação;
+    /// um envio menor que a melhor não a substitui.</item>
     /// <item>GetTopScoresAsync devolve a lista ordenada da MAIOR para a MENOR pontuação.</item>
     /// <item>Um ranking sem pontuações devolve uma lista vazia (nunca null).</item>
     /// <item>Um adapter pode ignorar campos que seu provedor não suporta
