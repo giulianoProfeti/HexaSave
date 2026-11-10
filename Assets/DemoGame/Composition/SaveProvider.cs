@@ -7,5 +7,6 @@ namespace DemoGame.Composition
     public enum SaveProvider
     {
         InMemory = 0,
+        Local = 1,
     }
 }
