@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>12/11/2026 - 14:41:25</Generatedon>
+    <Parser>MultiReportParser (2x OpenCoverParser)</Parser>
+    <Assemblies>2</Assemblies>
+    <Classes>20</Classes>
+    <Files>19</Files>
+    <Coveredlines>186</Coveredlines>
+    <Uncoveredlines>55</Uncoveredlines>
+    <Coverablelines>241</Coverablelines>
+    <Totallines>681</Totallines>
+    <Linecoverage>77.1</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>75</Coveredmethods>
+    <Totalmethods>126</Totalmethods>
+    <Methodcoverage>59.5</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="HexaSave.Application" classes="9" coverage="88.7" coveredlines="71" coverablelines="80" totallines="334" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="17" totalmethods="24" methodcoverage="70.8">
+      <Class name="HexaSave.Application.Errors.NotSignedInException" coverage="50" coveredlines="1" coverablelines="2" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="2" methodcoverage="50" />
+      <Class name="HexaSave.Application.Errors.PersistenceUnavailableException" coverage="100" coveredlines="2" coverablelines="2" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="HexaSave.Application.Ports.RankedScore" coverage="50" coveredlines="8" coverablelines="16" totallines="36" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="9" methodcoverage="33.3" />
+      <Class name="HexaSave.Application.UseCases.AuthGuard" coverage="100" coveredlines="1" coverablelines="1" totallines="63" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+      <Class name="HexaSave.Application.UseCases.GetTopScoresUseCase" coverage="100" coveredlines="12" coverablelines="12" totallines="39" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="HexaSave.Application.UseCases.LoadProgressUseCase" coverage="100" coveredlines="9" coverablelines="9" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="HexaSave.Application.UseCases.SaveProgressUseCase" coverage="100" coveredlines="16" coverablelines="16" totallines="63" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="HexaSave.Application.UseCases.SignInUseCase" coverage="100" coveredlines="7" coverablelines="7" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="HexaSave.Application.UseCases.SubmitScoreUseCase" coverage="100" coveredlines="15" coverablelines="15" totallines="45" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+    </Assembly>
+    <Assembly name="HexaSave.Domain" classes="11" coverage="71.4" coveredlines="115" coverablelines="161" totallines="410" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="58" totalmethods="102" methodcoverage="56.8">
+      <Class name="HexaSave.Domain.Leaderboard.DisplayName" coverage="75" coveredlines="12" coverablelines="16" totallines="40" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="9" methodcoverage="55.5" />
+      <Class name="HexaSave.Domain.Leaderboard.LeaderboardId" coverage="61.5" coveredlines="8" coverablelines="13" totallines="28" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="9" methodcoverage="55.5" />
+      <Class name="HexaSave.Domain.Leaderboard.Score" coverage="52.6" coveredlines="10" coverablelines="19" totallines="39" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="15" methodcoverage="40" />
+      <Class name="HexaSave.Domain.Leaderboard.ScoreEntry" coverage="73.6" coveredlines="14" coverablelines="19" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="12" methodcoverage="58.3" />
+      <Class name="HexaSave.Domain.Progress.PlayerProgress" coverage="96.4" coveredlines="27" coverablelines="28" totallines="76" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="10" totalmethods="11" methodcoverage="90.9" />
+      <Class name="HexaSave.Domain.Progress.SaveData" coverage="61.5" coveredlines="8" coverablelines="13" totallines="33" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="9" methodcoverage="44.4" />
+      <Class name="HexaSave.Domain.Progress.SaveVersion" coverage="57.1" coveredlines="12" coverablelines="21" totallines="45" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="17" methodcoverage="47" />
+      <Class name="HexaSave.Domain.Shared.DeviceId" coverage="53.8" coveredlines="7" coverablelines="13" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="9" methodcoverage="44.4" />
+      <Class name="HexaSave.Domain.Shared.DomainException" coverage="100" coveredlines="1" coverablelines="1" totallines="14" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+      <Class name="HexaSave.Domain.Shared.Guard" coverage="100" coveredlines="5" coverablelines="5" totallines="21" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="1" methodcoverage="100" />
+      <Class name="HexaSave.Domain.Shared.PlayerId" coverage="84.6" coveredlines="11" coverablelines="13" totallines="37" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="9" methodcoverage="77.7" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>

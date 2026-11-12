@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccd8677740be0c4b905521c07d8e898, type: 3}
   m_Name: HexaSaveSettings
   m_EditorClassIdentifier: DemoGame.Composition::DemoGame.Composition.HexaSaveSettings
-  provider: 0
+  provider: 1
   leaderboardKey: pontuacao-geral

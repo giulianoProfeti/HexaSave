@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "generatedon": "2026-11-12T17:41:25Z",
+    "parser": "MultiReportParser (2x OpenCoverParser)",
+    "assemblies": 2,
+    "classes": 20,
+    "files": 19,
+    "coveredlines": 186,
+    "uncoveredlines": 55,
+    "coverablelines": 241,
+    "totallines": 681,
+    "linecoverage": 77.1,
+    "coveredbranches": 0,
+    "totalbranches": 0,
+    "coveredmethods": 75,
+    "totalmethods": 126,
+    "methodcoverage": 59.5
+ },
+  "coverage": {
+    "assemblies": [
+      { "name": "HexaSave.Application", "classes": 9, "coverage": 88.7, "coveredlines": 71, "coverablelines": 80, "totallines": 334, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 70.8, "coveredmethods": 17, "totalmethods": 24, "classesinassembly": [
+        { "name": "HexaSave.Application.Errors.NotSignedInException", "coverage": 50, "coveredlines": 1, "coverablelines": 2, "totallines": 16, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 50, "coveredmethods": 1, "totalmethods": 2 },
+        { "name": "HexaSave.Application.Errors.PersistenceUnavailableException", "coverage": 100, "coveredlines": 2, "coverablelines": 2, "totallines": 18, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "HexaSave.Application.Ports.RankedScore", "coverage": 50, "coveredlines": 8, "coverablelines": 16, "totallines": 36, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 33.3, "coveredmethods": 3, "totalmethods": 9 },
+        { "name": "HexaSave.Application.UseCases.AuthGuard", "coverage": 100, "coveredlines": 1, "coverablelines": 1, "totallines": 63, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 1, "totalmethods": 1 },
+        { "name": "HexaSave.Application.UseCases.GetTopScoresUseCase", "coverage": 100, "coveredlines": 12, "coverablelines": 12, "totallines": 39, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "HexaSave.Application.UseCases.LoadProgressUseCase", "coverage": 100, "coveredlines": 9, "coverablelines": 9, "totallines": 27, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "HexaSave.Application.UseCases.SaveProgressUseCase", "coverage": 100, "coveredlines": 16, "coverablelines": 16, "totallines": 63, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "HexaSave.Application.UseCases.SignInUseCase", "coverage": 100, "coveredlines": 7, "coverablelines": 7, "totallines": 27, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "HexaSave.Application.UseCases.SubmitScoreUseCase", "coverage": 100, "coveredlines": 15, "coverablelines": 15, "totallines": 45, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 } ] },
+      { "name": "HexaSave.Domain", "classes": 11, "coverage": 71.4, "coveredlines": 115, "coverablelines": 161, "totallines": 410, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 56.8, "coveredmethods": 58, "totalmethods": 102, "classesinassembly": [
+        { "name": "HexaSave.Domain.Leaderboard.DisplayName", "coverage": 75, "coveredlines": 12, "coverablelines": 16, "totallines": 40, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 55.5, "coveredmethods": 5, "totalmethods": 9 },
+        { "name": "HexaSave.Domain.Leaderboard.LeaderboardId", "coverage": 61.5, "coveredlines": 8, "coverablelines": 13, "totallines": 28, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 55.5, "coveredmethods": 5, "totalmethods": 9 },
+        { "name": "HexaSave.Domain.Leaderboard.Score", "coverage": 52.6, "coveredlines": 10, "coverablelines": 19, "totallines": 39, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 40, "coveredmethods": 6, "totalmethods": 15 },
+        { "name": "HexaSave.Domain.Leaderboard.ScoreEntry", "coverage": 73.6, "coveredlines": 14, "coverablelines": 19, "totallines": 47, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 58.3, "coveredmethods": 7, "totalmethods": 12 },
+        { "name": "HexaSave.Domain.Progress.PlayerProgress", "coverage": 96.4, "coveredlines": 27, "coverablelines": 28, "totallines": 76, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 90.9, "coveredmethods": 10, "totalmethods": 11 },
+        { "name": "HexaSave.Domain.Progress.SaveData", "coverage": 61.5, "coveredlines": 8, "coverablelines": 13, "totallines": 33, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 44.4, "coveredmethods": 4, "totalmethods": 9 },
+        { "name": "HexaSave.Domain.Progress.SaveVersion", "coverage": 57.1, "coveredlines": 12, "coverablelines": 21, "totallines": 45, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 47, "coveredmethods": 8, "totalmethods": 17 },
+        { "name": "HexaSave.Domain.Shared.DeviceId", "coverage": 53.8, "coveredlines": 7, "coverablelines": 13, "totallines": 30, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 44.4, "coveredmethods": 4, "totalmethods": 9 },
+        { "name": "HexaSave.Domain.Shared.DomainException", "coverage": 100, "coveredlines": 1, "coverablelines": 1, "totallines": 14, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 1, "totalmethods": 1 },
+        { "name": "HexaSave.Domain.Shared.Guard", "coverage": 100, "coveredlines": 5, "coverablelines": 5, "totallines": 21, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 1, "totalmethods": 1 },
+        { "name": "HexaSave.Domain.Shared.PlayerId", "coverage": 84.6, "coveredlines": 11, "coverablelines": 13, "totallines": 37, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 77.7, "coveredmethods": 7, "totalmethods": 9 } ] } ]
+  }
+}

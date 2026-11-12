@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "HexaSave.Domain",
         "HexaSave.Application",
-        "HexaSave.Adapters.InMemory"
+        "HexaSave.Adapters.InMemory",
+        "HexaSave.Adapters.Local"
     ],
     "includePlatforms": [
         "Editor"
