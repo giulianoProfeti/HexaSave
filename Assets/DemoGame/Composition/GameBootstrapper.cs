@@ -18,6 +18,7 @@ namespace DemoGame.Composition
  
         [Header("Componentes que recebem dependências")]
         [SerializeField] private HexaSaveSmokeTest smokeTest;
+        [SerializeField] private DemoGameController gameController;
  
         private HexaSaveModule _module;
  
@@ -52,6 +53,16 @@ namespace DemoGame.Composition
             else
             {
                 Debug.LogWarning("[HexaSave] Nenhum HexaSaveSmokeTest referenciado no GameBootstrapper.", this);
+            }
+
+            if (gameController != null)
+            {
+                gameController.Construct(_module.SignIn, _module.SaveProgress, _module.LoadProgress,
+                                         _module.SubmitScore, _module.GetTopScores, settings.Provider.ToString());
+            }
+            else
+            {
+                Debug.LogWarning("[HexaSave] Nenhum DemoGameController referenciado no GameBootstrapper.", this);
             }
         }
     }
