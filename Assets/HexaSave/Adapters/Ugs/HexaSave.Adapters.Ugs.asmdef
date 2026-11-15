@@ -1,0 +1,19 @@
+{
+    "name": "HexaSave.Adapters.Ugs",
+    "rootNamespace": "HexaSave.Adapters.Ugs",
+    "references": [
+        "GUID:a38abcfc0a03e3e4e983348d7949fe6a",
+        "GUID:eb3d2dc26fd2ee5408e8cbe57932887e",
+        "GUID:fe25561d224ed4743af4c60938a59d0b",
+        "GUID:5540e30183c82e84b954c033c388e06c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -3,6 +3,7 @@ using System.IO;
 using HexaSave.Adapters.InMemory;
 using HexaSave.Adapters.Local;
 using HexaSave.Adapters.Platform;
+using HexaSave.Adapters.Ugs;
 using HexaSave.Application.Ports;
 using HexaSave.Application.UseCases;
 using HexaSave.Domain.Leaderboard;
@@ -22,16 +23,20 @@ namespace DemoGame.Composition
         public LoadProgressUseCase LoadProgress { get; }
         public SubmitScoreUseCase SubmitScore { get; }
         public GetTopScoresUseCase GetTopScores { get; }
+
+        /// <summary>Qual adapter atende cada port, em texto, para exibir no jogo e no Console.</summary>
+        public string Description { get; }
  
         private HexaSaveModule(SignInUseCase signIn, SaveProgressUseCase saveProgress,
                                LoadProgressUseCase loadProgress, SubmitScoreUseCase submitScore,
-                               GetTopScoresUseCase getTopScores)
+                               GetTopScoresUseCase getTopScores, string description)
         {
             SignIn = signIn;
             SaveProgress = saveProgress;
             LoadProgress = loadProgress;
             SubmitScore = submitScore;
             GetTopScores = getTopScores;
+            Description = description;
         }
  
         public static HexaSaveModule Compose(SaveProvider provider, LeaderboardId leaderboardId)
@@ -44,6 +49,7 @@ namespace DemoGame.Composition
             ISaveRepository saveRepository;
             ILeaderboardService leaderboard;
             IAuthService auth;
+            string description;
  
             switch (provider)
             {
@@ -51,28 +57,46 @@ namespace DemoGame.Composition
                     saveRepository = new InMemorySaveRepository();
                     leaderboard = new InMemoryLeaderboardService();
                     auth = new InMemoryAuthService();
+                    description = "Memória (login, save e ranking)";
                     break;
 
                 case SaveProvider.Local:
-                    var baseDirectory = Path.Combine(UnityEngine.Application.persistentDataPath, LocalFolderName);
-                    saveRepository = new LocalJsonSaveRepository(baseDirectory);
-                    auth = new LocalAuthService(baseDirectory);
-                    leaderboard = new InMemoryLeaderboardService(); // ranking persistente chega com o UGS (Sprint 2)
-                    UnityEngine.Debug.Log($"[HexaSave] Saves locais em: {baseDirectory}");
+                    var localDirectory = LocalDirectory();
+                    saveRepository = new LocalJsonSaveRepository(localDirectory);
+                    auth = new LocalAuthService(localDirectory);
+                    leaderboard = new InMemoryLeaderboardService();
+                    description = "Local (login e save) · Memória (ranking)";
                     break;
- 
+
+                case SaveProvider.Ugs:
+                    auth = new UgsAuthService();
+                    saveRepository = new LocalJsonSaveRepository(LocalDirectory());
+                    leaderboard = new InMemoryLeaderboardService();
+                    description = "UGS (login) · Local (save) · Memória (ranking)";
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(provider), provider,
                         "Provedor ainda não suportado pelo composition root.");
             }
  
             // 3. Casos de uso: recebem as dependências pelo construtor.
-            return new HexaSaveModule(
+            return new HexaSaveModule
+            (
                 new SignInUseCase(auth),
                 new SaveProgressUseCase(saveRepository, auth, clock, device),
                 new LoadProgressUseCase(saveRepository, auth),
                 new SubmitScoreUseCase(leaderboard, auth, clock, leaderboardId),
-                new GetTopScoresUseCase(leaderboard, leaderboardId));
+                new GetTopScoresUseCase(leaderboard, leaderboardId),
+                description
+            );
+        }
+
+        private static string LocalDirectory()
+        {
+            var directory = Path.Combine(UnityEngine.Application.persistentDataPath, LocalFolderName);
+            UnityEngine.Debug.Log($"[HexaSave] Saves locais em: {directory}");
+            return directory;
         }
     }
 }

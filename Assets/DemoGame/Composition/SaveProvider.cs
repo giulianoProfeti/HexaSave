@@ -8,5 +8,6 @@ namespace DemoGame.Composition
     {
         InMemory = 0,
         Local = 1,
+        Ugs = 2,
     }
 }

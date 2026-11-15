@@ -43,7 +43,7 @@ namespace DemoGame.Composition
                 return;
             }
  
-            Debug.Log($"[HexaSave] Composição montada com o provedor {settings.Provider}.", this);
+            Debug.Log($"[HexaSave] Composição montada ({settings.Provider}): {_module.Description}.", this);
  
             if (smokeTest != null)
             {
@@ -58,7 +58,7 @@ namespace DemoGame.Composition
             if (gameController != null)
             {
                 gameController.Construct(_module.SignIn, _module.SaveProgress, _module.LoadProgress,
-                                         _module.SubmitScore, _module.GetTopScores, settings.Provider.ToString());
+                                         _module.SubmitScore, _module.GetTopScores, _module.Description);
             }
             else
             {
