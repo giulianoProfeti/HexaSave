@@ -57,8 +57,11 @@ namespace DemoGame.Composition
 
             if (gameController != null)
             {
-                gameController.Construct(_module.SignIn, _module.SaveProgress, _module.LoadProgress,
-                                         _module.SubmitScore, _module.GetTopScores, _module.Description);
+                gameController.Construct(new DemoGameDependencies(
+                    _module.SignIn, _module.SaveProgress, _module.LoadProgress,
+                    _module.SubmitScore, _module.GetTopScores,
+                    _module.GetAccountStatus, _module.LinkAccount, _module.SignInToAccount,
+                    _module.Description));
             }
             else
             {

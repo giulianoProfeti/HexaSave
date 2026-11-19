@@ -1,32 +1,38 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 12/11/2026 - 14:41:25 |
+| Generated on: | 15/11/2026 - 23:50:28 |
 | Parser: | MultiReportParser (2x OpenCoverParser) |
 | Assemblies: | 2 |
-| Classes: | 20 |
-| Files: | 19 |
-| Covered lines: | 186 |
-| Uncovered lines: | 55 |
-| Coverable lines: | 241 |
-| Total lines: | 681 |
-| Line coverage: | 77.1% (186 of 241) |
+| Classes: | 26 |
+| Files: | 26 |
+| Covered lines: | 247 |
+| Uncovered lines: | 57 |
+| Coverable lines: | 304 |
+| Total lines: | 884 |
+| Line coverage: | 81.2% (247 of 304) |
 | Covered branches: | 0 |
 | Total branches: | 0 |
-| Covered methods: | 75 |
-| Total methods: | 126 |
-| Method coverage: | 59.5% (75 of 126) |
+| Covered methods: | 93 |
+| Total methods: | 145 |
+| Method coverage: | 64.1% (93 of 145) |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-|**HexaSave.Application**|**71**|**9**|**80**|**334**|**88.7%**|**0**|**0**|****|**17**|**24**|**70.8%**|
+|**HexaSave.Application**|**132**|**11**|**143**|**474**|**92.3%**|**0**|**0**|****|**35**|**43**|**81.3%**|
+|HexaSave.Application.Errors.AccountException|5|0|5|30|100%|0|0||2|2|100%|
 |HexaSave.Application.Errors.NotSignedInException|1|1|2|16|50%|0|0||1|2|50%|
 |HexaSave.Application.Errors.PersistenceUnavailableException|2|0|2|18|100%|0|0||2|2|100%|
+|HexaSave.Application.Ports.AccountCredentials|10|0|10|29|100%|0|0||4|4|100%|
+|HexaSave.Application.Ports.AccountStatus|12|2|14|43|85.7%|0|0||6|7|85.7%|
 |HexaSave.Application.Ports.RankedScore|8|8|16|36|50%|0|0||3|9|33.3%|
-|HexaSave.Application.UseCases.AuthGuard|1|0|1|63|100%|0|0||1|1|100%|
+|HexaSave.Application.UseCases.AuthGuard|1|0|1|16|100%|0|0||1|1|100%|
+|HexaSave.Application.UseCases.GetAccountStatusUseCase|7|0|7|22|100%|0|0||2|2|100%|
 |HexaSave.Application.UseCases.GetTopScoresUseCase|12|0|12|39|100%|0|0||2|2|100%|
+|HexaSave.Application.UseCases.LinkAccountUseCase|16|0|16|41|100%|0|0||2|2|100%|
 |HexaSave.Application.UseCases.LoadProgressUseCase|9|0|9|27|100%|0|0||2|2|100%|
-|HexaSave.Application.UseCases.SaveProgressUseCase|16|0|16|63|100%|0|0||2|2|100%|
+|HexaSave.Application.UseCases.SaveProgressUseCase|16|0|16|51|100%|0|0||2|2|100%|
+|HexaSave.Application.UseCases.SignInToAccountUseCase|11|0|11|34|100%|0|0||2|2|100%|
 |HexaSave.Application.UseCases.SignInUseCase|7|0|7|27|100%|0|0||2|2|100%|
 |HexaSave.Application.UseCases.SubmitScoreUseCase|15|0|15|45|100%|0|0||2|2|100%|
 |**HexaSave.Domain**|**115**|**46**|**161**|**410**|**71.4%**|**0**|**0**|****|**58**|**102**|**56.8%**|

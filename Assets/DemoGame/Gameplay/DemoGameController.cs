@@ -24,17 +24,24 @@ namespace DemoGame.Gameplay
         private PlayerProfile _profile;
         private SubmitScoreUseCase _submitScore;
         private GetTopScoresUseCase _getTopScores;
+        private GetAccountStatusUseCase _getAccountStatus;
+        private LinkAccountUseCase _linkAccount;
+        private SignInToAccountUseCase _signInToAccount;
         private string _storageLabel = "?";
         private bool _busy;
 
-        public void Construct(SignInUseCase signIn, SaveProgressUseCase saveProgress,
-                              LoadProgressUseCase loadProgress, SubmitScoreUseCase submitScore,
-                              GetTopScoresUseCase getTopScores, string storageLabel)
+        public void Construct(DemoGameDependencies dependencies)
         {
-            _profile = new PlayerProfile(signIn, loadProgress, saveProgress);
-            _submitScore = submitScore ?? throw new ArgumentNullException(nameof(submitScore));
-            _getTopScores = getTopScores ?? throw new ArgumentNullException(nameof(getTopScores));
-            _storageLabel = storageLabel;
+            if (dependencies == null)
+                throw new ArgumentNullException(nameof(dependencies));
+
+            _profile = new PlayerProfile(dependencies.SignIn, dependencies.LoadProgress, dependencies.SaveProgress);
+            _submitScore = dependencies.SubmitScore;
+            _getTopScores = dependencies.GetTopScores;
+            _getAccountStatus = dependencies.GetAccountStatus;
+            _linkAccount = dependencies.LinkAccount;
+            _signInToAccount = dependencies.SignInToAccount;
+            _storageLabel = dependencies.StorageLabel;
         }
 
         private void OnEnable()
@@ -44,6 +51,10 @@ namespace DemoGame.Gameplay
             ui.RankingClicked += HandleRanking;
             ui.BackToMenuClicked += HandleBackToMenu;
             ui.NameSubmitted += HandleNameSubmitted;
+            ui.AccountClicked += HandleAccount;
+            ui.LinkAccountRequested += HandleLinkAccount;
+            ui.SignInAccountRequested += HandleSignInAccount;
+
             run.HudChanged += ui.SetHud;
             run.RunEnded += HandleRunEnded;
         }
@@ -55,6 +66,10 @@ namespace DemoGame.Gameplay
             ui.RankingClicked -= HandleRanking;
             ui.BackToMenuClicked -= HandleBackToMenu;
             ui.NameSubmitted -= HandleNameSubmitted;
+            ui.AccountClicked -= HandleAccount;
+            ui.LinkAccountRequested -= HandleLinkAccount;
+            ui.SignInAccountRequested -= HandleSignInAccount;
+
             run.HudChanged -= ui.SetHud;
             run.RunEnded -= HandleRunEnded;
         }
@@ -220,6 +235,132 @@ namespace DemoGame.Gameplay
         {
             RefreshMenu();
             ui.Show(UiPanel.Menu);
+        }
+
+        private async void HandleAccount()
+        {
+            if (_busy)
+                return;
+
+            ui.SetAccount("Consultando conta...", showForm: false);
+            ui.Show(UiPanel.Account);
+            SetBusy(true, "Consultando conta...");
+            try
+            {
+                await RefreshAccountAsync();
+                Status("Conta consultada.");
+            }
+            catch (PersistenceUnavailableException exception)
+            {
+                Debug.LogWarning($"[DemoGame] {exception.Message}");
+                ui.SetAccount("Não foi possível consultar a conta agora.", showForm: false);
+                Status("Serviço de contas indisponível.");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception, this);
+            }
+            finally
+            {
+                SetBusy(false);
+            }
+        }
+
+        private async void HandleLinkAccount(string username, string password)
+        {
+            if (_busy)
+                return;
+
+            SetBusy(true, "Criando conta...");
+            try
+            {
+                var status = await _linkAccount.ExecuteAsync(username, password);
+                await RefreshAccountAsync();
+                Status($"Conta '{status.Username}' criada. Seu progresso continua o mesmo.");
+            }
+            catch (AccountException exception)
+            {
+                Status(exception.Message);
+            }
+            catch (NotSignedInException)
+            {
+                Status("Sem sessão: não é possível criar a conta agora.");
+            }
+            catch (PersistenceUnavailableException exception)
+            {
+                Debug.LogWarning($"[DemoGame] {exception.Message}");
+                Status("Serviço de contas indisponível. Tente novamente mais tarde.");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception, this);
+            }
+            finally
+            {
+                ui.ClearPassword();
+                SetBusy(false);
+            }
+        }
+
+        private async void HandleSignInAccount(string username, string password)
+        {
+            if (_busy)
+                return;
+
+            SetBusy(true, "Entrando na conta...");
+            try
+            {
+                await _signInToAccount.ExecuteAsync(username, password);
+
+                // Outro jogador: o progresso em memória é do anterior e precisa ser recarregado.
+                await _profile.InitializeAsync();
+                await RefreshAccountAsync();
+                Status(_profile.CurrentVersion.HasValue
+                    ? $"Conta carregada: progresso v{_profile.CurrentVersion}."
+                    : "Conta carregada: ainda não há progresso salvo.");
+            }
+            catch (AccountException exception)
+            {
+                Status(exception.Message);
+            }
+            catch (PersistenceUnavailableException exception)
+            {
+                Debug.LogWarning($"[DemoGame] {exception.Message}");
+                Status("Serviço de contas indisponível. Tente novamente mais tarde.");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception, this);
+            }
+            finally
+            {
+                ui.ClearPassword();
+                SetBusy(false);
+                RefreshMenu();
+            }
+        }
+
+        private async Task RefreshAccountAsync()
+        {
+            var status = await _getAccountStatus.ExecuteAsync();
+
+            switch (status.Kind)
+            {
+                case AccountKind.Registered:
+                    ui.SetAccount($"Conta: {status.Username}\nSeu progresso está vinculado a esta conta " +
+                                  "e pode ser recuperado em outro aparelho.", showForm: false);
+                    break;
+
+                case AccountKind.Guest:
+                    ui.SetAccount("Você está jogando como CONVIDADO.\nCrie uma conta para não perder seu progresso, " +
+                                  "ou entre em uma conta existente (isso substitui o progresso de convidado " +
+                                  "deste aparelho).", showForm: true);
+                    break;
+
+                default:
+                    ui.SetAccount("Contas de jogador não estão disponíveis neste provedor.", showForm: false);
+                    break;
+            }
         }
 
         // ---------- Comunicação com o HexaSave (falhas viram mensagens) ----------

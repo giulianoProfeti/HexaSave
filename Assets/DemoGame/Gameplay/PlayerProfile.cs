@@ -45,8 +45,16 @@ namespace DemoGame.Gameplay
 
         public bool CanBuyShield => NextShieldCost.HasValue && Coins >= NextShieldCost.Value;
 
+        /// <summary>
+        /// Entra e carrega o progresso. Pode ser chamado de novo após trocar de conta:
+        /// começa sempre do zero, para que nada do jogador anterior sobre na memória.
+        /// </summary>
         public async Task InitializeAsync()
         {
+            _data = new DemoSaveData();
+            CurrentVersion = null;
+            PlayerId = null;
+
             PlayerId = await _signIn.ExecuteAsync();
 
             var progress = await _loadProgress.ExecuteAsync();

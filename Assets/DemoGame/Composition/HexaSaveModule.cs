@@ -23,64 +23,74 @@ namespace DemoGame.Composition
         public LoadProgressUseCase LoadProgress { get; }
         public SubmitScoreUseCase SubmitScore { get; }
         public GetTopScoresUseCase GetTopScores { get; }
+        public GetAccountStatusUseCase GetAccountStatus { get; }
+        public LinkAccountUseCase LinkAccount { get; }
+        public SignInToAccountUseCase SignInToAccount { get; }
 
         /// <summary>Qual adapter atende cada port, em texto, para exibir no jogo e no Console.</summary>
         public string Description { get; }
  
         private HexaSaveModule(SignInUseCase signIn, SaveProgressUseCase saveProgress,
                                LoadProgressUseCase loadProgress, SubmitScoreUseCase submitScore,
-                               GetTopScoresUseCase getTopScores, string description)
+                               GetTopScoresUseCase getTopScores, GetAccountStatusUseCase getAccountStatus,
+                               LinkAccountUseCase linkAccount, SignInToAccountUseCase signInToAccount,
+                               string description)
         {
             SignIn = signIn;
             SaveProgress = saveProgress;
             LoadProgress = loadProgress;
             SubmitScore = submitScore;
             GetTopScores = getTopScores;
+            GetAccountStatus = getAccountStatus;
+            LinkAccount = linkAccount;
+            SignInToAccount = signInToAccount;
             Description = description;
         }
  
         public static HexaSaveModule Compose(SaveProvider provider, LeaderboardId leaderboardId)
         {
-            // 1. Adapters de plataforma: os mesmos para qualquer provedor.
             IClock clock = new SystemClock();
             IDeviceInfo device = new UnityDeviceInfo();
- 
-            // 2. Adapters do provedor escolhido. Cada um é criado UMA vez e compartilhado.
+
             ISaveRepository saveRepository;
             ILeaderboardService leaderboard;
             IAuthService auth;
+            IAccountService account;
             string description;
- 
+
             switch (provider)
             {
                 case SaveProvider.InMemory:
+                    var memoryAuth = new InMemoryAuthService();
+                    auth = memoryAuth;
+                    account = new InMemoryAccountService(memoryAuth); // as duas peças trabalham em par
                     saveRepository = new InMemorySaveRepository();
                     leaderboard = new InMemoryLeaderboardService();
-                    auth = new InMemoryAuthService();
-                    description = "Memória (login, save e ranking)";
+                    description = "Memória (login, conta, save e ranking)";
                     break;
 
                 case SaveProvider.Local:
                     var localDirectory = LocalDirectory();
                     saveRepository = new LocalJsonSaveRepository(localDirectory);
                     auth = new LocalAuthService(localDirectory);
-                    leaderboard = new InMemoryLeaderboardService();
-                    description = "Local (login e save) · Memória (ranking)";
+                    account = new UnavailableAccountService(); // Null Object: o provedor local não tem contas
+                    leaderboard = new InMemoryLeaderboardService(); // ranking persistente chega com o UGS
+                    description = "Local (login e save) · Memória (ranking) · sem contas";
                     break;
 
                 case SaveProvider.Ugs:
                     auth = new UgsAuthService();
+                    account = new UgsAccountService();
                     saveRepository = new LocalJsonSaveRepository(LocalDirectory());
                     leaderboard = new InMemoryLeaderboardService();
-                    description = "UGS (login) · Local (save) · Memória (ranking)";
+                    description = "UGS (login e conta) · Local (save) · Memória (ranking)";
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(provider), provider,
                         "Provedor ainda não suportado pelo composition root.");
             }
- 
-            // 3. Casos de uso: recebem as dependências pelo construtor.
+
             return new HexaSaveModule
             (
                 new SignInUseCase(auth),
@@ -88,6 +98,9 @@ namespace DemoGame.Composition
                 new LoadProgressUseCase(saveRepository, auth),
                 new SubmitScoreUseCase(leaderboard, auth, clock, leaderboardId),
                 new GetTopScoresUseCase(leaderboard, leaderboardId),
+                new GetAccountStatusUseCase(account),
+                new LinkAccountUseCase(account, auth),
+                new SignInToAccountUseCase(account),
                 description
             );
         }

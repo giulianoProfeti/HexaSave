@@ -9,6 +9,7 @@ namespace DemoGame.Composition
     [CreateAssetMenu(fileName = "HexaSaveSettings", menuName = "HexaSave/Settings")]
     public sealed class HexaSaveSettings : ScriptableObject
     {
+        // TODO: Cobrir o caso de mudar o provider com o jogo rodando
         [Tooltip("Qual conjunto de adapters será injetado nos ports.")]
         [SerializeField] private SaveProvider provider = SaveProvider.InMemory;
  

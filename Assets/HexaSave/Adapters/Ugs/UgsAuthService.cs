@@ -48,7 +48,7 @@ namespace HexaSave.Adapters.Ugs
                     await service.SignInAnonymouslyAsync();
 
                     Debug.Log(resumingSession
-                        ? $"[HexaSave] UGS: sessão retomada para o jogador {service.PlayerId}."
+                        ? $"[HexaSave] UGS: sessão retomada para o jogador: {service.PlayerInfo?.Username}({service.PlayerId})."
                         : $"[HexaSave] UGS: novo jogador anônimo criado: {service.PlayerId}.");
                 }
 

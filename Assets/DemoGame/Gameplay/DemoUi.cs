@@ -11,6 +11,7 @@ namespace DemoGame.Gameplay
         Hud,
         GameOver,
         Ranking,
+        Account,
     }
 
     /// <summary>Tudo o que a tela de menu precisa mostrar, num único pacote.</summary>
@@ -50,6 +51,7 @@ namespace DemoGame.Gameplay
         [SerializeField] private GameObject hudPanel;
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private GameObject rankingPanel;
+        [SerializeField] private GameObject accountPanel; 
 
         [Header("Menu")]
         [SerializeField] private TMP_InputField nameInput;
@@ -59,6 +61,7 @@ namespace DemoGame.Gameplay
         [SerializeField] private Button buyShieldButton;
         [SerializeField] private Button playButton;
         [SerializeField] private Button rankingButton;
+        [SerializeField] private Button accountButton;
 
         [Header("HUD")]
         [SerializeField] private TMP_Text hudText;
@@ -72,6 +75,17 @@ namespace DemoGame.Gameplay
         [SerializeField] private TMP_Text rankingText;
         [SerializeField] private Button backButton;
 
+        [Header("Conta")]
+        [SerializeField] private TMP_Text accountStatusText;
+        [Tooltip("Objeto que agrupa os campos e botões de conta; fica oculto quando não há o que fazer.")]
+        [SerializeField] private GameObject accountForm;
+        [SerializeField] private TMP_InputField usernameInput;
+        [Tooltip("Configure o Content Type deste campo como Password.")]
+        [SerializeField] private TMP_InputField passwordInput;
+        [SerializeField] private Button linkAccountButton;
+        [SerializeField] private Button signInAccountButton;
+        [SerializeField] private Button accountBackButton;
+
         [Header("Rodapé (sempre visível)")]
         [SerializeField] private TMP_Text statusText;
 
@@ -83,6 +97,9 @@ namespace DemoGame.Gameplay
         public event Action RankingClicked;
         public event Action BackToMenuClicked;
         public event Action<string> NameSubmitted;
+        public event Action AccountClicked;
+        public event Action<string, string> LinkAccountRequested;
+        public event Action<string, string> SignInAccountRequested;
 
         // private void Awake()
         // {
@@ -103,6 +120,10 @@ namespace DemoGame.Gameplay
             rankingButton.onClick.AddListener(() => RankingClicked?.Invoke());
             menuButton.onClick.AddListener(() => BackToMenuClicked?.Invoke());
             backButton.onClick.AddListener(() => BackToMenuClicked?.Invoke());
+            accountButton.onClick.AddListener(() => AccountClicked?.Invoke());
+            accountBackButton.onClick.AddListener(() => BackToMenuClicked?.Invoke());
+            linkAccountButton.onClick.AddListener(() => LinkAccountRequested?.Invoke(usernameInput.text, passwordInput.text));
+            signInAccountButton.onClick.AddListener(() => SignInAccountRequested?.Invoke(usernameInput.text, passwordInput.text));
             nameInput.onEndEdit.AddListener(value => NameSubmitted?.Invoke(value));
         }
 
@@ -114,6 +135,10 @@ namespace DemoGame.Gameplay
             rankingButton.onClick.RemoveAllListeners();
             menuButton.onClick.RemoveAllListeners();
             backButton.onClick.RemoveAllListeners();
+            accountButton.onClick.RemoveAllListeners();
+            accountBackButton.onClick.RemoveAllListeners();
+            linkAccountButton.onClick.RemoveAllListeners();
+            signInAccountButton.onClick.RemoveAllListeners();
             nameInput.onEndEdit.RemoveAllListeners();
         }
 
@@ -123,6 +148,7 @@ namespace DemoGame.Gameplay
             hudPanel.SetActive(panel == UiPanel.Hud);
             gameOverPanel.SetActive(panel == UiPanel.GameOver);
             rankingPanel.SetActive(panel == UiPanel.Ranking);
+            accountPanel.SetActive(panel == UiPanel.Account);
         }
 
         public void SetMenu(MenuViewData data)
@@ -154,6 +180,16 @@ namespace DemoGame.Gameplay
 
         public void SetRanking(string text) => rankingText.text = text;
 
+        /// <param name="showForm">Mostra os campos de usuário e senha (só faz sentido para convidados).</param>
+        public void SetAccount(string statusText, bool showForm)
+        {
+            accountStatusText.text = statusText;
+            accountForm.SetActive(showForm);
+        }
+
+        /// <summary>Apaga a senha da tela depois de cada tentativa: ela não deve ficar à vista.</summary>
+        public void ClearPassword() => passwordInput.SetTextWithoutNotify(string.Empty);
+
         public void SetStatus(string text) => statusText.text = text;
 
         /// <summary>Trava ou libera todos os controles (usado enquanto algo está sendo salvo).</summary>
@@ -166,6 +202,12 @@ namespace DemoGame.Gameplay
             menuButton.interactable = interactable;
             backButton.interactable = interactable;
             nameInput.interactable = interactable;
+            accountButton.interactable = interactable;
+            accountBackButton.interactable = interactable;
+            usernameInput.interactable = interactable;
+            passwordInput.interactable = interactable;
+            linkAccountButton.interactable = interactable;
+            signInAccountButton.interactable = interactable;
             buyShieldButton.interactable = interactable && _canBuyShield;
         }
     }
