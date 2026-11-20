@@ -79,12 +79,12 @@ namespace DemoGame.Composition
                     break;
 
                 case SaveProvider.Ugs:
-                    // Migração incremental: login, conta e save já são do UGS; o ranking passa no R09.
+                    // Migração concluída: todos os ports atendidos pelo Unity Gaming Services.
                     auth = new UgsAuthService();
                     account = new UgsAccountService();
                     saveRepository = new UgsCloudSaveRepository();
-                    leaderboard = new InMemoryLeaderboardService();
-                    description = "UGS (login, conta e save) · Memória (ranking)";
+                    leaderboard = new UgsLeaderboardService();
+                    description = "UGS (login, conta, save e ranking)";
                     break;
 
                 default:

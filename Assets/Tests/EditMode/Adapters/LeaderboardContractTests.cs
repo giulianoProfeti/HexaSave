@@ -6,7 +6,10 @@ using NUnit.Framework;
 
 namespace HexaSave.Tests.EditMode.Adapters
 {
-    /// <summary>Testes de contrato do port ILeaderboardService (inclui a decisão D22).</summary>
+    /// <summary>
+    /// Testes de contrato do port ILeaderboardService.
+    /// O desempate (decisão D22) saiu daqui na Etapa 12: virou regra de cada provedor.
+    /// </summary>
     public abstract class LeaderboardContractTests
     {
         protected ILeaderboardService Leaderboard { get; private set; }
@@ -78,17 +81,6 @@ namespace HexaSave.Tests.EditMode.Adapters
             Assert.That(top[1].Entry.PlayerId, Is.EqualTo(TestData.PlayerC));
             Assert.That(top[2].Entry.PlayerId, Is.EqualTo(TestData.PlayerA));
             Assert.That(top[2].Rank, Is.EqualTo(3));
-        }
-
-        [Test]
-        public async Task GetTop_Tie_PutsWhoScoredFirstAhead()
-        {
-            await Leaderboard.SubmitScoreAsync(TestData.Board, TestData.Entry(TestData.PlayerA, 500, at: TestData.T0.AddMinutes(10)));
-            await Leaderboard.SubmitScoreAsync(TestData.Board, TestData.Entry(TestData.PlayerB, 500, at: TestData.T0));
-
-            var top = await Leaderboard.GetTopScoresAsync(TestData.Board, 10);
-
-            Assert.That(top[0].Entry.PlayerId, Is.EqualTo(TestData.PlayerB));
         }
 
         [Test]

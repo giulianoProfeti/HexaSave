@@ -12,9 +12,13 @@ namespace HexaSave.Adapters.Ugs
     /// </summary>
     internal static class UgsSession
     {
+        /// <summary>Há uma sessão ativa? (os serviços do UGS exigem uma até para leituras)</summary>
+        public static bool IsSignedIn =>
+            UnityServices.State == ServicesInitializationState.Initialized && AuthenticationService.Instance.IsSignedIn;
+
         public static void RequireSessionPlayer(PlayerId playerId)
         {
-            if (UnityServices.State != ServicesInitializationState.Initialized || !AuthenticationService.Instance.IsSignedIn)
+            if (!IsSignedIn)
                 throw new NotSignedInException("É preciso entrar no Unity Gaming Services antes de acessar os dados do jogador.");
 
             var sessionPlayer = AuthenticationService.Instance.PlayerId;

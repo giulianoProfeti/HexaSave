@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HexaSaveSettings
   m_EditorClassIdentifier: DemoGame.Composition::DemoGame.Composition.HexaSaveSettings
   provider: 2
-  leaderboardKey: pontuacao-geral
+  leaderboardKey: nao-existe
