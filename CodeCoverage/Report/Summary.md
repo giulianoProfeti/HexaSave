@@ -1,7 +1,7 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 15/11/2026 - 23:50:28 |
+| Generated on: | 19/11/2026 - 21:51:33 |
 | Parser: | MultiReportParser (2x OpenCoverParser) |
 | Assemblies: | 2 |
 | Classes: | 26 |
@@ -9,7 +9,7 @@
 | Covered lines: | 247 |
 | Uncovered lines: | 57 |
 | Coverable lines: | 304 |
-| Total lines: | 884 |
+| Total lines: | 882 |
 | Line coverage: | 81.2% (247 of 304) |
 | Covered branches: | 0 |
 | Total branches: | 0 |
@@ -19,12 +19,12 @@
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-|**HexaSave.Application**|**132**|**11**|**143**|**474**|**92.3%**|**0**|**0**|****|**35**|**43**|**81.3%**|
+|**HexaSave.Application**|**132**|**11**|**143**|**472**|**92.3%**|**0**|**0**|****|**35**|**43**|**81.3%**|
 |HexaSave.Application.Errors.AccountException|5|0|5|30|100%|0|0||2|2|100%|
 |HexaSave.Application.Errors.NotSignedInException|1|1|2|16|50%|0|0||1|2|50%|
 |HexaSave.Application.Errors.PersistenceUnavailableException|2|0|2|18|100%|0|0||2|2|100%|
 |HexaSave.Application.Ports.AccountCredentials|10|0|10|29|100%|0|0||4|4|100%|
-|HexaSave.Application.Ports.AccountStatus|12|2|14|43|85.7%|0|0||6|7|85.7%|
+|HexaSave.Application.Ports.AccountStatus|12|2|14|41|85.7%|0|0||6|7|85.7%|
 |HexaSave.Application.Ports.RankedScore|8|8|16|36|50%|0|0||3|9|33.3%|
 |HexaSave.Application.UseCases.AuthGuard|1|0|1|16|100%|0|0||1|1|100%|
 |HexaSave.Application.UseCases.GetAccountStatusUseCase|7|0|7|22|100%|0|0||2|2|100%|

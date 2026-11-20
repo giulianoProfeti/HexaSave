@@ -79,11 +79,12 @@ namespace DemoGame.Composition
                     break;
 
                 case SaveProvider.Ugs:
+                    // Migração incremental: login, conta e save já são do UGS; o ranking passa no R09.
                     auth = new UgsAuthService();
                     account = new UgsAccountService();
-                    saveRepository = new LocalJsonSaveRepository(LocalDirectory());
+                    saveRepository = new UgsCloudSaveRepository();
                     leaderboard = new InMemoryLeaderboardService();
-                    description = "UGS (login e conta) · Local (save) · Memória (ranking)";
+                    description = "UGS (login, conta e save) · Memória (ranking)";
                     break;
 
                 default:

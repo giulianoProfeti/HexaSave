@@ -12,6 +12,9 @@ namespace HexaSave.Application.Ports
     /// <remarks>
     /// Contrato que TODOS os adapters devem respeitar:
     /// <list type="bullet">
+    /// <item>Pré-condição: o PlayerId informado é o do jogador autenticado. Os casos de uso sempre
+    /// garantem isso. Provedores de nuvem só acessam os dados do próprio jogador e recusam outro
+    /// PlayerId com ArgumentException; adapters locais podem aceitar qualquer jogador.</item>
     /// <item>LoadAsync devolve null quando o jogador ainda não tem save (não é erro).</item>
     /// <item>SaveAsync substitui o progresso existente daquele PlayerId.</item>
     /// <item>Falhas de infraestrutura são lançadas como <see cref="PersistenceUnavailableException"/>.</item>

@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedon": "2026-11-16T02:50:28Z",
+    "generatedon": "2026-11-20T00:51:33Z",
     "parser": "MultiReportParser (2x OpenCoverParser)",
     "assemblies": 2,
     "classes": 26,
@@ -8,7 +8,7 @@
     "coveredlines": 247,
     "uncoveredlines": 57,
     "coverablelines": 304,
-    "totallines": 884,
+    "totallines": 882,
     "linecoverage": 81.2,
     "coveredbranches": 0,
     "totalbranches": 0,
@@ -18,12 +18,12 @@
  },
   "coverage": {
     "assemblies": [
-      { "name": "HexaSave.Application", "classes": 15, "coverage": 92.3, "coveredlines": 132, "coverablelines": 143, "totallines": 474, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 81.3, "coveredmethods": 35, "totalmethods": 43, "classesinassembly": [
+      { "name": "HexaSave.Application", "classes": 15, "coverage": 92.3, "coveredlines": 132, "coverablelines": 143, "totallines": 472, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 81.3, "coveredmethods": 35, "totalmethods": 43, "classesinassembly": [
         { "name": "HexaSave.Application.Errors.AccountException", "coverage": 100, "coveredlines": 5, "coverablelines": 5, "totallines": 30, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
         { "name": "HexaSave.Application.Errors.NotSignedInException", "coverage": 50, "coveredlines": 1, "coverablelines": 2, "totallines": 16, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 50, "coveredmethods": 1, "totalmethods": 2 },
         { "name": "HexaSave.Application.Errors.PersistenceUnavailableException", "coverage": 100, "coveredlines": 2, "coverablelines": 2, "totallines": 18, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
         { "name": "HexaSave.Application.Ports.AccountCredentials", "coverage": 100, "coveredlines": 10, "coverablelines": 10, "totallines": 29, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 },
-        { "name": "HexaSave.Application.Ports.AccountStatus", "coverage": 85.7, "coveredlines": 12, "coverablelines": 14, "totallines": 43, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 85.7, "coveredmethods": 6, "totalmethods": 7 },
+        { "name": "HexaSave.Application.Ports.AccountStatus", "coverage": 85.7, "coveredlines": 12, "coverablelines": 14, "totallines": 41, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 85.7, "coveredmethods": 6, "totalmethods": 7 },
         { "name": "HexaSave.Application.Ports.RankedScore", "coverage": 50, "coveredlines": 8, "coverablelines": 16, "totallines": 36, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 33.3, "coveredmethods": 3, "totalmethods": 9 },
         { "name": "HexaSave.Application.UseCases.AuthGuard", "coverage": 100, "coveredlines": 1, "coverablelines": 1, "totallines": 16, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 1, "totalmethods": 1 },
         { "name": "HexaSave.Application.UseCases.GetAccountStatusUseCase", "coverage": 100, "coveredlines": 7, "coverablelines": 7, "totallines": 22, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },

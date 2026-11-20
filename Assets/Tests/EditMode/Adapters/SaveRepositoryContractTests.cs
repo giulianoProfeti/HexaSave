@@ -11,6 +11,9 @@ namespace HexaSave.Tests.EditMode.Adapters
     /// Testes de CONTRATO do port ISaveRepository.
     /// A classe é abstrata: cada adapter cria uma subclasse que só diz como construí-lo,
     /// e herda todos estes testes. Se um adapter passa aqui, ele é substituível pelos outros.
+    /// O adapter do UGS não tem subclasse: precisa de rede e de projeto vinculado, e só acessa o
+    /// jogador autenticado (veja a pré-condição do port). Ele é coberto pelos testes do mapper e
+    /// pelo roteiro manual.
     /// </summary>
     public abstract class SaveRepositoryContractTests
     {
